@@ -35,3 +35,19 @@ Test final 2024-25 → 22/11/2026 (711 matchs ; 459 avec Pinnacle), log-loss [IC
 
 **Honnêteté.** Le test a été exécuté deux fois, avec des choix identiques (seul un argument
 d'API LightGBM a changé entre les deux) ; résultats identiques au chiffre près.
+
+### Phase E (stratégie et risque)
+
+Test 2024-25 → 22/11/2026, cotes d'exécution Bet365 ouverture, Kelly 1/4 plafonné à 2,5 % :
+| Modèle | Seuil (validation) | Paris | ROI mise fixe [IC95] | CLV moyenne [IC95] | Bankroll 100 → | P(ruine −50 %) MC |
+|---|---|---|---|---|---|---|
+| Dixon-Coles | 4 % | 466 | −1,1 % [−16,9 ; +16,1] | −5,50 % [−6,41 ; −4,54] | 70 | 40 % |
+| Elo | 2 % | 557 | −9,3 % [−20,5 ; +2,7] | −5,82 % [−6,60 ; −5,04] | 49 | 64 % |
+| LightGBM | 10 % | 506 | −3,7 % [−18,4 ; +11,2] | −4,79 % [−5,71 ; −3,89] | 43 | 74 % |
+
+- **La CLV tranche là où le ROI ne peut pas** : l'IC95 du ROI contient 0 (trop de variance), mais
+  la CLV est nettement négative, au niveau d'un pari au hasard chez Bet365 (−5,49 %).
+  Les « value bets » des modèles ne battent pas la ligne de clôture.
+- Validation 2023-24 : ROI de −16 % à −56 % selon le seuil, pour tous les modèles.
+- Sensibilité à la marge : même en pariant à la clôture **sans aucune marge**, le ROI reste
+  négatif (DC −1,9 %, Elo −3,8 %, LightGBM −3,0 %). Il n'y a pas d'avantage à faire disparaître.

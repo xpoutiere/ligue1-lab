@@ -41,6 +41,10 @@ TRAIN = ["2021", "2122", "2223"]
 VALID = ["2324"]
 CV_FOLDS = [(["2021", "2122"], ["2223"]), (["2021", "2122", "2223"], ["2324"])]
 ART = PROJECT_ROOT / "artifacts"
+ODDS_COLS = [f"{b}{o}" for b in ("B365", "B365C", "PSC", "PS", "Avg", "AvgC", "Max", "MaxC")
+             for o in "HDA"]
+KEEP_COLS = ["Date", "Kickoff", "Season", "HomeTeam", "AwayTeam", "FTHG", "FTAG", "FTR",
+             "mkt_src", "pH", "pD", "pA", *ODDS_COLS]
 P3 = {"Marché": ["pH", "pD", "pA"], "Elo": ["eH", "eD", "eA"], "Dixon-Coles": ["dH", "dD", "dA"]}
 
 
@@ -266,6 +270,10 @@ def run(verbose=True):
     pool_inputs_va = [va[P3["Marché"]].to_numpy(), va[P3["Dixon-Coles"]].to_numpy(),
                       va[P3["Elo"]].to_numpy(), oof_lgbm.loc[va_idx].to_numpy()]
     w_pool, _ = fit_log_pool(pool_inputs_va, y_of(va))
+    V = va[KEEP_COLS].copy()  # prédictions hors-pli de validation (pour la stratégie)
+    for name, arr in zip(["Marché", "Dixon-Coles", "Elo", "LightGBM"], pool_inputs_va,
+                         strict=True):
+        V[[f"{name}|H", f"{name}|D", f"{name}|A"]] = arr
     log(f"poids combinaison (marché, DC, Elo, GBM) : {np.round(w_pool, 3)}")
     mkt_cols = feat_cols + ["pH", "pD", "pA"]
     mk_lgbm_mkt = lambda: lgb.LGBMClassifier(objective="multiclass", random_state=SEED,
@@ -297,7 +305,7 @@ def run(verbose=True):
     # 3) évaluation
     names = list(p)
     cols = {n: [f"{n}|H", f"{n}|D", f"{n}|A"] for n in names}
-    T = test[["Date", "Season", "HomeTeam", "AwayTeam", "FTR", "mkt_src"]].copy()
+    T = test[KEEP_COLS].copy()
     for n in names:
         T[cols[n]] = p[n]
     metrics = evaluate(T, cols={"Marché": cols["Marché"],
@@ -344,6 +352,7 @@ def run(verbose=True):
     (ART / "ml" / "results.json").write_text(json.dumps(out, indent=1, ensure_ascii=False,
                                                         default=float))
     T.to_parquet(ART / "ml" / "test_predictions.parquet")
+    V.to_parquet(ART / "ml" / "valid_predictions.parquet")
     log("\n=== Test final (log-loss, IC95, écart apparié au marché, p Holm) ===")
     show = metrics[["modèle", "log_loss", "ll_ic95_bas", "ll_ic95_haut", "delta_vs_marché",
                     "delta_ic95_bas", "delta_ic95_haut", "brier", "accuracy_%", "p_holm"]]

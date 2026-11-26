@@ -24,8 +24,8 @@ Légende : [x] fait · [ ] à faire. Mis à jour à chaque commit.
 - [x] SHAP, tableau comparatif unique avec IC95 bootstrap et correction de Holm
 
 ## E. Stratégie et risque
-- [ ] EV, Kelly fractionné, plafonds, seuil choisi sur validation
-- [ ] Closing Line Value, Monte Carlo de bankroll, sensibilité à la marge
+- [x] EV, Kelly fractionné (1/4), plafond 2,5 %, seuil choisi sur validation
+- [x] Closing Line Value, Monte Carlo de bankroll (monde réel et monde sans avantage), sensibilité à la marge
 
 ## F. Biais cognitifs
 - [ ] Favori-outsider, forme / séries, popularité (PSG, OM), médiatisation ; correction multiple (Holm / BH)
