@@ -1,4 +1,7 @@
-data/
+# Données brutes téléchargées (régénérables) : non versionnées
+data/*.csv
+!data/team_names.csv
+data/xg/
 __pycache__/
 *.pyc
 .pytest_cache/
