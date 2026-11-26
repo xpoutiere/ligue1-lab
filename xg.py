@@ -11,6 +11,7 @@ Toutes les équipes sont ramenées aux noms football-data via data/team_names.cs
 un nom inconnu lève une erreur plutôt que d'être ignoré en silence.
 """
 import codecs
+import io
 import json
 import re
 import time
@@ -104,7 +105,10 @@ def fetch_understat(code: str, refresh=False) -> pd.DataFrame:
 # ------------------------------------------------------------------ FBref (export manuel)
 def parse_fbref_fixtures(path) -> pd.DataFrame:
     """Lit un export CSV « Scores & Fixtures » de FBref (colonnes Home, xG, Score, xG.1, Away)."""
-    f = pd.read_csv(path)
+    # Un copier-coller depuis le navigateur peut laisser des lignes avant l'en-tête.
+    lines = Path(path).read_text(encoding="utf-8-sig", errors="replace").splitlines()
+    start = next((i for i, ln in enumerate(lines) if ",Home," in ln and ",Away" in ln), 0)
+    f = pd.read_csv(io.StringIO("\n".join(lines[start:])))
     f = f.rename(columns={"xG": "HxG", "xG.1": "AxG"})
     need = {"Date", "Home", "Away", "Score", "HxG", "AxG"}
     if missing := need - set(f.columns):

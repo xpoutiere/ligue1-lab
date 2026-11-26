@@ -112,3 +112,11 @@ def test_load_xg_falls_back_to_fbref(tmp_path, monkeypatch):
                                                            index=False)
     x = xg.load_xg(["2324"], verbose=False)
     assert list(x["xg_src"]) == ["fbref"]
+
+
+def test_parse_fbref_export_with_junk_lines_before_header(tmp_path):
+    p = tmp_path / "fbref_2324.csv"
+    p.write_text("﻿Ligue 1 Scores & Fixtures\n\nWk,Day,Date,Time,Home,xG,Score,xG,Away\n"
+                 "1,Fri,2023-08-11,21:00,Nice,1.2,1–1,0.8,Lille\n", encoding="utf-8")
+    d = xg.parse_fbref_fixtures(p)
+    assert len(d) == 1 and d.iloc[0]["AxG"] == pytest.approx(0.8)
