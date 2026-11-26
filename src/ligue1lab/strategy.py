@@ -193,7 +193,7 @@ def run(verbose=True):
         f"{out['clv_random_bet_b365_%']:+.2f} %")
     (ART / "strategy").mkdir(parents=True, exist_ok=True)
     (ART / "strategy" / "results.json").write_text(
-        json.dumps(out, indent=1, ensure_ascii=False, default=float))
+        json.dumps(out, indent=1, ensure_ascii=False, default=float), encoding="utf-8")
     return out
 
 

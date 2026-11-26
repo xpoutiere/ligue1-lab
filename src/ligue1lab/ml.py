@@ -58,12 +58,12 @@ def load_dataset(cache=True) -> tuple[pd.DataFrame, list[str]]:
     if cache and path.exists():
         cached = pd.read_parquet(path)
         if len(cached) == len(d) and cached["Kickoff"].max() == d["Kickoff"].max():
-            return cached, json.loads((ART / "feature_cols.json").read_text())
+            return cached, json.loads((ART / "feature_cols.json").read_text(encoding="utf-8"))
     F = build_features(df).loc[d.index]
     feat_cols = [c for c in F.columns if c not in ("dH", "dD", "dA", "eH", "eD", "eA")]
     out = pd.concat([d, F], axis=1)
     out.to_parquet(path)
-    (ART / "feature_cols.json").write_text(json.dumps(feat_cols))
+    (ART / "feature_cols.json").write_text(json.dumps(feat_cols), encoding="utf-8")
     return out, feat_cols
 
 
@@ -350,7 +350,7 @@ def run(verbose=True):
            "gain_top": (gain / gain.sum()).sort_values(ascending=False).head(20).round(4).to_dict()}
     (ART / "ml").mkdir(parents=True, exist_ok=True)
     (ART / "ml" / "results.json").write_text(json.dumps(out, indent=1, ensure_ascii=False,
-                                                        default=float))
+                                                        default=float), encoding="utf-8")
     T.to_parquet(ART / "ml" / "test_predictions.parquet")
     V.to_parquet(ART / "ml" / "valid_predictions.parquet")
     log("\n=== Test final (log-loss, IC95, écart apparié au marché, p Holm) ===")

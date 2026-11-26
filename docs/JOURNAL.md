@@ -51,3 +51,19 @@ Test 2024-25 → 22/11/2026, cotes d'exécution Bet365 ouverture, Kelly 1/4 plaf
 - Validation 2023-24 : ROI de −16 % à −56 % selon le seuil, pour tous les modèles.
 - Sensibilité à la marge : même en pariant à la clôture **sans aucune marge**, le ROI reste
   négatif (DC −1,9 %, Elo −3,8 %, LightGBM −3,0 %). Il n'y a pas d'avantage à faire disparaître.
+
+### Phase F (biais cognitifs), 2 436 matchs 2019-2026, résidu = issue − proba de clôture
+
+| Hypothèse | n | Résidu (pts) [IC95] | p Holm | ROI Bet365 [IC95] | Verdict |
+|---|---|---|---|---|---|
+| H1 outsiders (cote ≥ 6) sur-estimés | 716 | −1,15 [−3,38 ; +1,17] | 1,00 | −17,2 % [−35,0 ; +1,8] | pas d'effet significatif |
+| H1 grands favoris (< 1,5) sous-estimés | 410 | +2,24 [−1,97 ; +6,28] | 1,00 | −0,1 % [−6,0 ; +5,5] | pas d'effet significatif |
+| H2a série ≥ 3 victoires sur-estimée | 347 | −1,78 [−6,35 ; +3,03] | 1,00 | −12,5 % | pas d'effet significatif |
+| H2b série ≥ 3 défaites sous-estimée | 339 | −2,19 [−6,63 ; +2,20] | 1,00 | −14,9 % | pas d'effet (signe opposé) |
+| H3 PSG / OM sur-estimés | 507 | +2,31 [−1,61 ; +6,26] | 1,00 | −1,3 % | pas d'effet (signe opposé) |
+| H4 domicile sur-estimé | 2 434 | −0,20 [−2,05 ; +1,70] | 1,00 | −7,5 % | pas d'effet |
+| H5 favori des matchs médiatisés | 205 | +1,98 [−4,53 ; +8,83] | 1,00 | +1,4 % [−12,1 ; +15,2] | pas d'effet |
+
+- La forme du biais favori-outsider est là (ROI à la clôture ≈ 0 pour les favoris, −18 % pour
+  les cotes 6-10), comme dans la littérature, mais elle n'est **pas significative** sur 2 436 matchs.
+- Aucun biais n'est exploitable après la marge Bet365.

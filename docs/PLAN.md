@@ -28,7 +28,7 @@ Légende : [x] fait · [ ] à faire. Mis à jour à chaque commit.
 - [x] Closing Line Value, Monte Carlo de bankroll (monde réel et monde sans avantage), sensibilité à la marge
 
 ## F. Biais cognitifs
-- [ ] Favori-outsider, forme / séries, popularité (PSG, OM), médiatisation ; correction multiple (Holm / BH)
+- [x] Favori-outsider, forme / séries, popularité (PSG, OM), domicile, médiatisation ; corrections Holm et BH
 
 ## G. Site public (`web/`, Next.js)
 - [ ] `make_artifacts.py` → `web/public/data/*.json` (validés par zod)
