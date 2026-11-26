@@ -23,3 +23,10 @@ Format : date · décision · alternatives · raison.
 | 26/11/2026 | « Ruine » = bankroll divisée par 2 au moins une fois | Bankroll à 0 | Kelly fractionné plafonné n'atteint jamais 0 ; −50 % est un seuil parlant |
 | 26/11/2026 | Biais : 7 tests pré-spécifiés (H1 ×2, H2a, H2b, H3, H4, H5) sur toute la période 2019-2026 (pas d'apprentissage, donc pas de split) ; mesure = résidu issue − proba de clôture sans marge ; Holm (principal) et BH | Tester beaucoup de seuils | Limiter les degrés de liberté du chercheur ; seuils (cote ≥ 6, < 1,5, séries ≥ 3) fixés avant de regarder |
 | 26/11/2026 | Groupes : populaires = PSG, OM ; médiatisés = matchs entre deux clubs parmi PSG, OM, OL, Lille, Monaco, Lens | Classement par audiences TV | Pas de source ouverte d'audiences ; choix fixé avant l'analyse |
+| 26/11/2026 | Modèle affiché sur les MatchCards et le journal : Dixon-Coles | LightGBM ; combinaison | Modèle structurel interprétable, disponible sans features ; la combinaison ≈ marché n'apporterait rien à montrer |
+| 26/11/2026 | Matchs : prochaine journée depuis `fixtures.csv` de football-data ; à défaut, dernière journée jouée avec prédictions walk-forward hors échantillon, clairement étiquetée | Prédictions inventées | Ne rien afficher de non calculé |
+| 26/11/2026 | Journal de paper trading en ajout seul, versionné ; démarre vide | Remplir le passé | Une prédiction n'a de valeur que si elle est horodatée avant le match |
+| 26/11/2026 | Données du site lues au build (fs + zod), pas de fetch client | Fetch au chargement | Pages statiques plus rapides ; un artefact invalide fait échouer le build |
+| 26/11/2026 | Pas de terrain « heatmap de tirs » : le terrain SVG montre la répartition réelle domicile / nul / extérieur | Heatmap illustrative | Pas de coordonnées de tirs dans les données : pas de visualisation inventée |
+| 26/11/2026 | Icône GitHub remplacée par une icône « code » générique | Logo GitHub | lucide-react ne fournit plus les logos de marques |
+| 26/11/2026 | Déploiement GitHub Pages préparé en workflow manuel (`workflow_dispatch`) | Vercel ; déploiement automatique | Gratuit, sans compte supplémentaire ; aucun déploiement sans accord |

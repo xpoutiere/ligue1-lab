@@ -37,7 +37,7 @@ export function HomeView({ summary: s, calib, bands, gap, recent, modelName }: P
         </div>
         <p className="mt-6 max-w-3xl text-lg text-muted">{h.lead}</p>
 
-        <Reveal className="mt-10 grid gap-3 md:grid-cols-4 md:grid-rows-2" delay={0.05}>
+        <div className="mt-10 grid gap-3 md:grid-cols-4 md:grid-rows-2">
           <div className="card overflow-hidden p-4 md:col-span-2 md:row-span-2">
             <p className="smallcaps text-muted">{h.mosaic.calib}</p>
             <CalibrationChart series={{ [t.common.market]: calib }} height={300} compact />
@@ -54,7 +54,7 @@ export function HomeView({ summary: s, calib, bands, gap, recent, modelName }: P
             <p className="smallcaps text-muted">{h.mosaic.pitch}</p>
             <div className="h-[130px]"><PitchOutcomes home={s.outcome_shares[0]} draw={s.outcome_shares[1]} away={s.outcome_shares[2]} lang={lang} /></div>
           </div>
-        </Reveal>
+        </div>
       </section>
 
       <Reveal>

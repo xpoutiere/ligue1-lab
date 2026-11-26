@@ -67,3 +67,17 @@ Test 2024-25 → 22/11/2026, cotes d'exécution Bet365 ouverture, Kelly 1/4 plaf
 - La forme du biais favori-outsider est là (ROI à la clôture ≈ 0 pour les favoris, −18 % pour
   les cotes 6-10), comme dans la littérature, mais elle n'est **pas significative** sur 2 436 matchs.
 - Aucun biais n'est exploitable après la marge Bet365.
+
+### Phases G et H (site et documentation)
+
+- Site Next.js 16 (export statique, 10 pages), thèmes sombre / clair, FR / EN, données des
+  artefacts validées par zod. Build et eslint propres ; aucun débordement horizontal à 375 px ;
+  aucune erreur console.
+- `predict.py` : `fixtures.csv` de football-data ne contient pas encore la prochaine journée de
+  Ligue 1 (seulement des matchs de semaine d'autres ligues) ; le journal démarre donc vide.
+- README, `docs/methodology.md` (mini-papier), licence MIT, workflow GitHub Pages manuel.
+
+**Problèmes ouverts.**
+- Lighthouse non mesuré : mon garde-fou a bloqué l'audit automatique (à faire dans Chrome DevTools).
+- Le journal de paper trading attend la publication de la prochaine journée (`python tasks.py predict`).
+- Understat à réessayer pour des xG historiques.

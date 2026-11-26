@@ -31,10 +31,12 @@ Légende : [x] fait · [ ] à faire. Mis à jour à chaque commit.
 - [x] Favori-outsider, forme / séries, popularité (PSG, OM), domicile, médiatisation ; corrections Holm et BH
 
 ## G. Site public (`web/`, Next.js)
-- [ ] `make_artifacts.py` → `web/public/data/*.json` (validés par zod)
-- [ ] DA sombre néon + clair dashboard, composants, page `/design`
-- [ ] Pages : Accueil, Matchs, Modèles, Stratégie, Biais, Équipes, Paper trading, Ma calibration, Méthodologie
-- [ ] Lighthouse ≥ 90, accessibilité AA, 360-1440 px ; déploiement préparé (pas lancé)
+- [x] `make_artifacts.py` → `web/public/data/*.json` (validés par zod au build)
+- [x] DA sombre néon + clair dashboard, composants, page `/design`
+- [x] Pages : Accueil, Matchs, Modèles, Stratégie, Biais, Équipes, Paper trading, Ma calibration, Méthodologie
+- [x] Responsive vérifié à 375 px (aucun débordement), console sans erreur ; déploiement GitHub Pages préparé (workflow manuel, pas lancé)
+- [ ] Lighthouse ≥ 90 : audit automatique bloqué par mon garde-fou, à lancer dans Chrome DevTools
 
 ## H. Documentation
-- [ ] README, `docs/methodology.md`, licence MIT, récapitulatif final
+- [x] README (captures sombre et clair), `docs/methodology.md`, licence MIT, tâches `tasks.py` / `Makefile`
+- [ ] Premier enregistrement réel du journal de paper trading (dès que football-data publie la journée)
