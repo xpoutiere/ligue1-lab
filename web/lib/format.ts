@@ -1,10 +1,13 @@
 export type Lang = "fr" | "en";
 
-const loc = (lang: Lang) => (lang === "fr" ? "fr-FR" : "en-GB");
-
+// Formatage SANS Intl : le rendu statique (Node du runner) et le navigateur peuvent embarquer
+// des versions d'ICU différentes, ce qui provoquait une erreur d'hydratation React (#418).
 export function fmt(x: number | null | undefined, digits = 3, lang: Lang = "fr"): string {
   if (x === null || x === undefined || Number.isNaN(x)) return "–";
-  return x.toLocaleString(loc(lang), { minimumFractionDigits: digits, maximumFractionDigits: digits });
+  const [int, dec] = Math.abs(x).toFixed(digits).split(".");
+  const grouped = int.replace(/\B(?=(\d{3})+(?!\d))/g, lang === "fr" ? " " : ",");
+  const sign = x < 0 && Number(Math.abs(x).toFixed(digits)) !== 0 ? "-" : "";
+  return sign + grouped + (dec ? (lang === "fr" ? "," : ".") + dec : "");
 }
 
 export function signed(x: number | null | undefined, digits = 3, lang: Lang = "fr"): string {
@@ -28,11 +31,24 @@ export function ci(lo: number | null | undefined, hi: number | null | undefined,
   return `[${f(lo, digits, lang)} ; ${f(hi, digits, lang)}]`;
 }
 
+const DAYS = { fr: ["dim.", "lun.", "mar.", "mer.", "jeu.", "ven.", "sam."], en: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"] };
+const MONTHS = {
+  fr: ["janv.", "févr.", "mars", "avr.", "mai", "juin", "juil.", "août", "sept.", "oct.", "nov.", "déc."],
+  en: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+};
+
 export function date(d: string, lang: Lang = "fr", withYear = true): string {
   const dt = new Date(`${d}T12:00:00Z`);
-  return dt.toLocaleDateString(loc(lang), {
-    weekday: "short", day: "numeric", month: "short", timeZone: "UTC", ...(withYear ? { year: "numeric" } : {}),
-  });
+  const day = DAYS[lang][dt.getUTCDay()], m = MONTHS[lang][dt.getUTCMonth()], n = dt.getUTCDate();
+  const y = withYear ? ` ${dt.getUTCFullYear()}` : "";
+  return lang === "fr" ? `${day} ${n} ${m}${y}` : `${day} ${n} ${m}${y}`;
+}
+
+/** Horodatage ISO -> « 26 nov. 2026, 12:35 UTC » (sans Intl, identique serveur / navigateur). */
+export function stamp(iso: string, lang: Lang = "fr"): string {
+  const dt = new Date(iso);
+  const hh = String(dt.getUTCHours()).padStart(2, "0"), mm = String(dt.getUTCMinutes()).padStart(2, "0");
+  return `${dt.getUTCDate()} ${MONTHS[lang][dt.getUTCMonth()]} ${dt.getUTCFullYear()}, ${hh}:${mm} UTC`;
 }
 
 export function seasonLabel(code: string): string {

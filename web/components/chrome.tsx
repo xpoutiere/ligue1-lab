@@ -4,6 +4,7 @@ import { Code2 as Github, Languages, Menu, Moon, ShieldAlert, Sun, X } from "luc
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { stamp } from "@/lib/format";
 import { useI18n } from "@/lib/i18n";
 import { Logo } from "./ui";
 
@@ -112,7 +113,7 @@ export function ResponsibleBanner() {
 
 export function Footer({ generatedAt, version }: { generatedAt: string; version: string }) {
   const { t, lang } = useI18n();
-  const d = new Date(generatedAt).toLocaleString(lang === "fr" ? "fr-FR" : "en-GB", { dateStyle: "long", timeStyle: "short", timeZone: "Europe/Paris" });
+  const d = stamp(generatedAt, lang);
   return (
     <footer className="mt-24 border-t border-border">
       <div className="mx-auto grid max-w-[1280px] gap-6 px-4 py-10 text-sm text-muted md:grid-cols-[1fr_2fr] md:px-8">
