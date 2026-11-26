@@ -1,4 +1,10 @@
-pandas
+# Dépendances directes (versions exactes figées dans requirements.lock)
 numpy
+pandas
 scipy
+scikit-learn
+lightgbm
+shap
+pyarrow
 streamlit
+plotly

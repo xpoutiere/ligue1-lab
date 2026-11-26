@@ -8,9 +8,9 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from backtest import run_all
-from models import DixonColes, elo_probs, walk_forward_dc
-from synth import make_synthetic
+from ligue1lab.backtest import run_all
+from ligue1lab.models import DixonColes, elo_probs, walk_forward_dc
+from ligue1lab.synth import make_synthetic
 
 
 @pytest.fixture(scope="module")

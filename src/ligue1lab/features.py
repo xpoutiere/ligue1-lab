@@ -9,7 +9,7 @@ Conventions de nommage : préfixe `h_` (équipe à domicile), `a_` (extérieur),
 import numpy as np
 import pandas as pd
 
-from models import elo_probs, walk_forward_dc
+from .models import elo_probs, walk_forward_dc
 
 # statistique de match -> (colonne domicile, colonne extérieur)
 STATS = {"g": ("FTHG", "FTAG"), "s": ("HS", "AS"), "st": ("HST", "AST"), "xg": ("HxG", "AxG")}
@@ -163,7 +163,7 @@ def build_features(df: pd.DataFrame, windows=(3, 5, 10), ewm_span=5, venue_windo
 if __name__ == "__main__":
     import time
 
-    from core import load_data
+    from .core import load_data
 
     data = load_data()
     t0 = time.time()

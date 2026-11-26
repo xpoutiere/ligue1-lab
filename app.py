@@ -1,9 +1,9 @@
-"""Lancer : streamlit run app.py"""
+"""Outil de labo interne (le site public est dans web/). Lancer : streamlit run app.py"""
 import pandas as pd
 import streamlit as st
 
-from backtest import COLS, cumulative_logloss_gap, run_all, value_bets
-from core import load_data, market_baseline
+from ligue1lab.backtest import COLS, cumulative_logloss_gap, run_all, value_bets
+from ligue1lab.core import load_data, market_baseline
 
 st.set_page_config(page_title="Ligue 1 Lab", page_icon="⚽", layout="wide")
 st.title("⚽ Ligue 1 Lab")
@@ -23,7 +23,7 @@ with st.sidebar:
 @st.cache_data(show_spinner="Chargement des données…")
 def get_df(synth):
     if synth:
-        from synth import make_synthetic
+        from ligue1lab.synth import make_synthetic
         return make_synthetic()
     return load_data()
 

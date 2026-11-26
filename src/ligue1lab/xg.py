@@ -21,7 +21,8 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-DATA_DIR = Path("data")
+from .core import DATA_DIR
+
 XG_DIR = DATA_DIR / "xg"
 TEAM_MAP = DATA_DIR / "team_names.csv"
 UNDERSTAT_URL = "https://understat.com/league/Ligue_1/{year}"
@@ -198,7 +199,7 @@ def coverage(df: pd.DataFrame, cols=("HS", "HST", "HxG")) -> pd.DataFrame:
 
 
 if __name__ == "__main__":
-    from core import load_data, season_codes
+    from .core import load_data, season_codes
 
     data = load_data()
     merged = merge_xg(data, load_xg(season_codes()))

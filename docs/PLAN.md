@@ -1,0 +1,40 @@
+# Plan de travail
+
+Légende : [x] fait · [ ] à faire. Mis à jour à chaque commit.
+
+## A. Validation et fondations
+- [x] `core.py` et `backtest.py` lancés sur la vraie Ligue 1 (2019-20 à 2026-27)
+- [x] Bugs vraies données : repli des cotes ligne par ligne (Pinnacle absent depuis le 16/01/2026), NaN, noms, doublons, saison en cours, coups d'envoi simultanés dans l'Elo
+- [x] `sanity_report()` (marges, nombre de matchs, calibration, doublons)
+- [x] Package `src/ligue1lab/`, `tests/` (dont anti-fuite), `ruff`, `.gitignore`, `Makefile` + `tasks.py`, GitHub Actions
+- [x] git initialisé, un commit par étape
+
+## B. Données enrichies
+- [x] Import xG multi-source (Understat poli + cache, exports FBref), table de noms versionnée, `data/README.md`
+- [x] Repli : tirs / tirs cadrés football-data (100 % des matchs). Understat en maintenance, FBref sans xG
+- [ ] Réessayer Understat avant la version finale
+
+## C. Features point-in-time
+- [x] `build_features(df)` : 130 features, test « modifier le futur ne change pas le passé »
+
+## D. Modèles ML
+- [ ] Découpage temporel : entraînement ≤ 2022-23, validation 2023-24 (+ CV temporelle par saison), test final unique 2024-25 → aujourd'hui
+- [ ] Logistique multinomiale, LightGBM, calibration (Platt / isotonique) sur jeu séparé
+- [ ] Information incrémentale vs marché (probas marché en feature, régression des log-vraisemblances)
+- [ ] SHAP, tableau comparatif unique avec IC95 bootstrap
+
+## E. Stratégie et risque
+- [ ] EV, Kelly fractionné, plafonds, seuil choisi sur validation
+- [ ] Closing Line Value, Monte Carlo de bankroll, sensibilité à la marge
+
+## F. Biais cognitifs
+- [ ] Favori-outsider, forme / séries, popularité (PSG, OM), médiatisation ; correction multiple (Holm / BH)
+
+## G. Site public (`web/`, Next.js)
+- [ ] `make_artifacts.py` → `web/public/data/*.json` (validés par zod)
+- [ ] DA sombre néon + clair dashboard, composants, page `/design`
+- [ ] Pages : Accueil, Matchs, Modèles, Stratégie, Biais, Équipes, Paper trading, Ma calibration, Méthodologie
+- [ ] Lighthouse ≥ 90, accessibilité AA, 360-1440 px ; déploiement préparé (pas lancé)
+
+## H. Documentation
+- [ ] README, `docs/methodology.md`, licence MIT, récapitulatif final

@@ -1,12 +1,27 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
 [project]
 name = "ligue1lab"
-version = "0.1.0"
+version = "0.2.0"
 description = "Ligue 1 Lab : le marché des paris sportifs est-il battable ?"
 requires-python = ">=3.11"
+license = "MIT"
+dependencies = [
+    "numpy", "pandas", "scipy", "scikit-learn", "lightgbm", "shap", "pyarrow",
+]
+
+[project.optional-dependencies]
+lab = ["streamlit", "plotly"]
+dev = ["pytest", "ruff"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-pythonpath = [".", "tests"]
+pythonpath = ["src", "tests"]
 addopts = "-q"
 
 [tool.ruff]
@@ -22,4 +37,4 @@ ignore = [
 
 [tool.ruff.lint.isort]
 split-on-trailing-comma = false
-known-first-party = ["core", "models", "backtest", "synth", "features", "xg", "test_leakage"]
+known-first-party = ["ligue1lab", "test_leakage"]

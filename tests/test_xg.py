@@ -5,8 +5,8 @@ import numpy as np
 import pandas as pd
 import pytest
 
-import xg
-from core import clean_matches
+from ligue1lab import xg
+from ligue1lab.core import clean_matches
 
 FD_TEAMS_SEEN = {  # noms football-data observés en 2019-20 à 2026-27 (contrôle du 26/11/2026)
     "Ajaccio", "Amiens", "Angers", "Auxerre", "Bordeaux", "Brest", "Clermont", "Dijon",

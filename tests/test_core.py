@@ -3,8 +3,8 @@ import numpy as np
 import pandas as pd
 import pytest
 
-import core
-from core import (
+from ligue1lab import core
+from ligue1lab.core import (
     bootstrap_ci,
     brier,
     calibration_table,
@@ -147,3 +147,16 @@ def test_load_data_offline_with_heterogeneous_seasons(tmp_path, monkeypatch):
     assert set(df.Season) == {"2526", "2627"}
     d, *_ = market_baseline(df)
     assert (d[d.Season == "2627"]["mkt_src"] == "B365C").all()
+
+
+def test_sanity_report_flags_wrong_match_count_and_passes_known_exceptions():
+    from ligue1lab.synth import make_synthetic
+
+    df = make_synthetic(seasons=3, n_teams=6)  # saisons complètes : 30 matchs
+    df["Season"] = df["Season"].astype(str)
+    rep = core.sanity_report(df).set_index("contrôle")
+    assert (rep.loc[[i for i in rep.index if i.startswith("matchs ")], "statut"] == "OK").all()
+    first = "2021"  # ni la saison COVID (1920) ni la saison en cours
+    short = df.drop(df[df.Season == first].index[:3])
+    rep2 = core.sanity_report(short).set_index("contrôle")
+    assert rep2.loc[f"matchs {first}", "statut"] == "ATTENTION"

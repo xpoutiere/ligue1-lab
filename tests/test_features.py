@@ -3,8 +3,8 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from features import build_features, table_features
-from synth import make_synthetic
+from ligue1lab.features import build_features, table_features
+from ligue1lab.synth import make_synthetic
 from test_leakage import scramble_results
 
 

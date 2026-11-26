@@ -1,10 +1,30 @@
-# Données brutes téléchargées (régénérables) : non versionnées
-data/*.csv
-!data/team_names.csv
-data/xg/
+# Environnements et caches
+.venv/
 __pycache__/
 *.pyc
 .pytest_cache/
 .ruff_cache/
+*.egg-info/
+build/
+dist/
+
+# Secrets (clés d'API : variables d'environnement uniquement)
 .env
+.env.*
 .streamlit/secrets.toml
+
+# Données brutes téléchargées (régénérables)
+data/*.csv
+!data/team_names.csv
+data/xg/
+
+# Images de référence sous droits (photos) : gardées en local uniquement
+docs/design/*.png
+docs/design/*.jpg
+
+# Site web
+web/node_modules/
+web/.next/
+web/out/
+web/next-env.d.ts
+web/*.tsbuildinfo

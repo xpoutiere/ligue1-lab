@@ -2,7 +2,7 @@
 import numpy as np
 import pandas as pd
 
-from backtest import COLS, evaluate, value_bets
+from ligue1lab.backtest import COLS, evaluate, value_bets
 
 
 def _toy(n=400, seed=0):
