@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { useI18n } from "@/lib/i18n";
 import { Logo } from "./ui";
 
-export const GITHUB_URL = process.env.NEXT_PUBLIC_GITHUB_URL || "https://github.com/";
+export const GITHUB_URL = process.env.NEXT_PUBLIC_GITHUB_URL || "https://github.com/xpoutiere/ligue1-lab";
 
 const LINKS = [
   ["/", "home"], ["/matchs/", "matches"], ["/modeles/", "models"], ["/strategie/", "strategy"],
