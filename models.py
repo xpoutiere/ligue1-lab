@@ -9,8 +9,10 @@ from scipy.special import expit, gammaln
 # 1. ELO
 # --------------------------------------------------------------------------
 def elo_probs(df, k=20.0, home_adv=60.0, draw_c=0.55, init=1500.0,
-              newcomer=1450.0, regress=0.25):
+              newcomer=1450.0, regress=0.25, return_pre=False):
     """Elo séquentiel. Retourne (probas pré-match [H,D,A], notes finales).
+
+    Avec `return_pre=True`, renvoie aussi les notes pré-match (n x 2 : domicile, extérieur).
 
     Les probas de chaque match n'utilisent QUE les matchs terminés avant son coup d'envoi
     (pas de fuite) : les matchs d'un même coup d'envoi (colonne `Kickoff`, sinon `Date`)
@@ -21,7 +23,7 @@ def elo_probs(df, k=20.0, home_adv=60.0, draw_c=0.55, init=1500.0,
     when = (df["Kickoff"] if "Kickoff" in df.columns else df["Date"]).to_numpy()
     if len(when) > 1 and (when[1:] < when[:-1]).any():
         raise ValueError("elo_probs : df doit être trié par date")
-    ratings, out = {}, np.zeros((len(df), 3))
+    ratings, out, pre = {}, np.zeros((len(df), 3)), np.zeros((len(df), 2))
     rows = list(df[["Season", "HomeTeam", "AwayTeam", "FTHG", "FTAG"]].itertuples(index=False))
     last_season, i = None, 0
     while i < len(rows):
@@ -41,6 +43,7 @@ def elo_probs(df, k=20.0, home_adv=60.0, draw_c=0.55, init=1500.0,
             pH, pA = expit(x - draw_c), expit(-x - draw_c)
             pD = 1.0 - pH - pA
             out[n] = (pH, pD, pA)
+            pre[n] = (rh, ra)
             gd = r.FTHG - r.FTAG
             s = 1.0 if gd > 0 else 0.5 if gd == 0 else 0.0
             mult = 1.0 + np.log1p(abs(gd)) if gd != 0 else 1.0
@@ -49,7 +52,7 @@ def elo_probs(df, k=20.0, home_adv=60.0, draw_c=0.55, init=1500.0,
             ratings[h] += delta
             ratings[a] -= delta
         i = j
-    return out, ratings
+    return (out, ratings, pre) if return_pre else (out, ratings)
 
 
 # --------------------------------------------------------------------------

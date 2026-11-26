@@ -120,3 +120,13 @@ def test_parse_fbref_export_with_junk_lines_before_header(tmp_path):
                  "1,Fri,2023-08-11,21:00,Nice,1.2,1–1,0.8,Lille\n", encoding="utf-8")
     d = xg.parse_fbref_fixtures(p)
     assert len(d) == 1 and d.iloc[0]["AxG"] == pytest.approx(0.8)
+
+
+def test_merge_xg_keeps_football_data_xg_first():
+    df = _fd_matches()
+    df["HxG"], df["AxG"] = [2.0, np.nan], [0.5, np.nan]
+    out = xg.merge_xg(df, _xg_rows())  # Understat dit 1.2 pour Nice-Lille
+    nice = out[out.HomeTeam == "Nice"].iloc[0]
+    assert nice["HxG"] == pytest.approx(2.0) and nice["xg_src"] == "football-data"
+    empty = xg.merge_xg(df, xg.load_xg([], verbose=False))
+    assert empty["xg_src"].tolist()[0] == "football-data"

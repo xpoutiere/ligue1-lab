@@ -7,7 +7,7 @@ régénérables. Seuls `team_names.csv` et ce README le sont.
 |---|---|---|---|---|
 | Résultats, cotes, statistiques de match | [football-data.co.uk](https://www.football-data.co.uk/francem.php), Ligue 1 (`F1`) | `data/F1_<saison>.csv` | automatique (`core.load_data`), cache local, saison en cours re-téléchargée après 12 h | 2019-20 à 2026-27, 2 436 matchs joués (2026-27 jusqu'au 22/11/2026) |
 | xG par match | [Understat](https://understat.com/league/Ligue_1) | `data/xg/understat_<saison>.json` | automatique (`xg.fetch_understat`), 1 requête / 5 s, en-tête identifiant le projet, cache local | **indisponible** : le site affiche « We will come back soon » |
-| xG par match | [FBref](https://fbref.com/en/comps/13/schedule/) « Scores & Fixtures » | `data/xg/fbref_<saison>.csv` | **export manuel** dans un navigateur (« Share & Export > Get table as CSV »). Aucun téléchargement automatique : le site est protégé contre les robots | non fait |
+| xG par match | [FBref](https://fbref.com/en/comps/13/schedule/) « Scores & Fixtures » | `data/xg/fbref_<saison>.csv` | **export manuel** dans un navigateur (« Share & Export > Get table as CSV »). Aucun téléchargement automatique : le site est protégé contre les robots | **pas de xG** : vérifié le 26/11/2026, la page « Scores & Fixtures » 2025-26 n'a plus de colonnes xG (Wk, Day, Date, Time, Home, Score, Away, …) |
 
 Codes de saison : `1920` = 2019-20, …, `2627` = 2026-27.
 
@@ -21,6 +21,10 @@ Codes de saison : `1920` = 2019-20, …, `2627` = 2026-27.
 - 2019-20 à 2022-23 : 20 clubs (380 matchs) ; depuis 2023-24 : 18 clubs (306 matchs).
 - Statistiques disponibles pour 100 % des matchs : tirs (`HS`, `AS`), tirs cadrés (`HST`,
   `AST`), corners (`HC`, `AC`), fautes (`HF`, `AF`), cartons (`HY`, `AY`, `HR`, `AR`).
+- **xG publiés par football-data depuis 2026-27** (`HxG`, `AxG`, 99 matchs au 22/11/2026),
+  absents des saisons précédentes. Ils sont prioritaires sur Understat dans `xg.merge_xg`,
+  mais trop rares (4 % des matchs) pour servir de feature : `build_features` ignore toute
+  statistique couvrant moins de 50 % des matchs.
 - Les heures (`Time`) sont celles du fichier source (heure du Royaume-Uni) : elles ne
   servent qu'à ordonner les matchs d'une même journée.
 

@@ -18,6 +18,7 @@ import time
 import urllib.request
 from pathlib import Path
 
+import numpy as np
 import pandas as pd
 
 DATA_DIR = Path("data")
@@ -161,8 +162,16 @@ def merge_xg(df: pd.DataFrame, xg: pd.DataFrame, max_day_gap=2) -> pd.DataFrame:
     (fuseaux horaires) ; toute incohérence lève une erreur.
     """
     key = ["Season", "HomeTeam", "AwayTeam"]
+    # football-data publie lui-même des xG depuis 2026-27 : ils sont prioritaires.
+    if {"HxG", "AxG"} <= set(df.columns):
+        fd = df[["HxG", "AxG"]].astype(float)
+        fd_src = pd.Series(np.where(fd["HxG"].notna(), "football-data", None), index=df.index)
+    else:
+        fd = pd.DataFrame(np.nan, index=df.index, columns=["HxG", "AxG"])
+        fd_src = pd.Series(None, index=df.index, dtype=object)
     if xg.empty:
-        return df.assign(HxG=float("nan"), AxG=float("nan"), xg_src=pd.NA)
+        return df.drop(columns=["HxG", "AxG", "xg_src"], errors="ignore").assign(
+            HxG=fd["HxG"], AxG=fd["AxG"], xg_src=fd_src)
     x = xg.rename(columns={"home": "HomeTeam", "away": "AwayTeam", "Date": "xg_date"})
     if x.duplicated(key).any():
         raise ValueError(f"xG : matchs en double {x[x.duplicated(key)][key].values.tolist()}")
@@ -176,6 +185,9 @@ def merge_xg(df: pd.DataFrame, xg: pd.DataFrame, max_day_gap=2) -> pd.DataFrame:
         raise ValueError(f"Réconciliation xG : {int(bad_score.sum())} scores et "
                          f"{int(bad_date.sum())} dates incohérents")
     out.index = df.index
+    use_fd = fd["HxG"].notna()
+    out.loc[use_fd, ["HxG", "AxG"]] = fd.loc[use_fd].to_numpy()
+    out.loc[use_fd, "xg_src"] = "football-data"
     return out.drop(columns=["xg_date", "hg", "ag"])
 
 
