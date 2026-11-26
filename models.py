@@ -12,27 +12,43 @@ def elo_probs(df, k=20.0, home_adv=60.0, draw_c=0.55, init=1500.0,
               newcomer=1450.0, regress=0.25):
     """Elo séquentiel. Retourne (probas pré-match [H,D,A], notes finales).
 
-    Les probas de chaque match n'utilisent QUE les matchs précédents (pas de fuite).
+    Les probas de chaque match n'utilisent QUE les matchs terminés avant son coup d'envoi
+    (pas de fuite) : les matchs d'un même coup d'envoi (colonne `Kickoff`, sinon `Date`)
+    sont prédits ensemble, puis les notes sont mises à jour.
     Le nul est modélisé par un logit ordonné : plus l'écart est faible, plus le nul est probable.
+    `df` doit être trié chronologiquement.
     """
+    when = (df["Kickoff"] if "Kickoff" in df.columns else df["Date"]).to_numpy()
+    if len(when) > 1 and (when[1:] < when[:-1]).any():
+        raise ValueError("elo_probs : df doit être trié par date")
     ratings, out = {}, np.zeros((len(df), 3))
-    last_season = None
-    for i, r in enumerate(df.itertuples(index=False)):
-        if last_season is not None and r.Season != last_season:
+    rows = list(df[["Season", "HomeTeam", "AwayTeam", "FTHG", "FTAG"]].itertuples(index=False))
+    last_season, i = None, 0
+    while i < len(rows):
+        j = i
+        while j < len(rows) and when[j] == when[i]:
+            j += 1
+        if last_season is not None and rows[i].Season != last_season:
             for t in ratings:  # retour à la moyenne entre saisons
                 ratings[t] = init + (1 - regress) * (ratings[t] - init)
-        last_season = r.Season
-        rh = ratings.setdefault(r.HomeTeam, newcomer)
-        ra = ratings.setdefault(r.AwayTeam, newcomer)
-        x = (rh + home_adv - ra) / 400.0 * np.log(10)
-        pH, pA = expit(x - draw_c), expit(-x - draw_c)
-        pD = 1.0 - pH - pA
-        out[i] = (pH, pD, pA)
-        gd = r.FTHG - r.FTAG
-        s = 1.0 if gd > 0 else 0.5 if gd == 0 else 0.0
-        mult = 1.0 + np.log1p(abs(gd)) if gd != 0 else 1.0
-        delta = k * mult * (s - (pH + 0.5 * pD))
-        ratings[r.HomeTeam], ratings[r.AwayTeam] = rh + delta, ra - delta
+        last_season = rows[i].Season
+        deltas = []
+        for n in range(i, j):  # 1) prédire tout le créneau avec les notes d'avant
+            r = rows[n]
+            rh = ratings.setdefault(r.HomeTeam, newcomer)
+            ra = ratings.setdefault(r.AwayTeam, newcomer)
+            x = (rh + home_adv - ra) / 400.0 * np.log(10)
+            pH, pA = expit(x - draw_c), expit(-x - draw_c)
+            pD = 1.0 - pH - pA
+            out[n] = (pH, pD, pA)
+            gd = r.FTHG - r.FTAG
+            s = 1.0 if gd > 0 else 0.5 if gd == 0 else 0.0
+            mult = 1.0 + np.log1p(abs(gd)) if gd != 0 else 1.0
+            deltas.append((r.HomeTeam, r.AwayTeam, k * mult * (s - (pH + 0.5 * pD))))
+        for h, a, delta in deltas:  # 2) puis mettre à jour
+            ratings[h] += delta
+            ratings[a] -= delta
+        i = j
     return out, ratings
 
 
@@ -89,8 +105,8 @@ class DixonColes:
         res = minimize(nll, x0, method="L-BFGS-B", bounds=bounds)
         self.params_ = (teams, res.x)
         att, dfn, self.home_, self.rho_ = unpack(res.x)
-        self.att_ = dict(zip(teams, att))
-        self.dfn_ = dict(zip(teams, dfn))
+        self.att_ = dict(zip(teams, att, strict=True))
+        self.dfn_ = dict(zip(teams, dfn, strict=True))
         # équipe inconnue (promue) : moyenne des 3 plus faibles
         weakest = sorted(teams, key=lambda t: self.att_[t] - self.dfn_[t])[:3]
         self.default_ = (np.mean([self.att_[t] for t in weakest]),
@@ -149,4 +165,6 @@ def walk_forward_dc(df, test_from, refit_days=28, min_train=300, **kw):
             parts.append(pd.DataFrame(model.predict(block.HomeTeam, block.AwayTeam),
                                       index=block.index, columns=["dH", "dD", "dA"]))
         start = stop
+    if not parts:
+        raise ValueError("walk_forward_dc : aucun bloc prédit (pas assez d'historique ?)")
     return pd.concat(parts)

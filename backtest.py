@@ -6,15 +6,44 @@ Usage :
     python backtest.py --test-from 2023-08-01
 """
 import argparse
+
 import numpy as np
 import pandas as pd
 
-from core import (load_data, market_baseline, outcome_matrix, log_loss, brier, pick_odds,
-                  OUTCOMES)
-from models import elo_probs, walk_forward_dc, DixonColes
+from core import (
+    OUTCOMES,
+    bootstrap_ci,
+    brier,
+    load_data,
+    market_baseline,
+    match_log_loss,
+    outcome_matrix,
+)
+from models import DixonColes, elo_probs, walk_forward_dc
 
 COLS = {"Marché": ["pH", "pD", "pA"], "Elo": ["eH", "eD", "eA"],
         "Dixon-Coles": ["dH", "dD", "dA"], "Fréquences": ["fH", "fD", "fA"]}
+
+
+def evaluate(test, cols=COLS, n_boot=2000):
+    """Log-loss / Brier / accuracy de chaque modèle, avec IC95 bootstrap.
+
+    `delta_vs_marché` = log-loss(modèle) - log-loss(marché), IC95 par bootstrap APPARIÉ
+    (mêmes matchs rééchantillonnés) : > 0 = le modèle fait moins bien que le marché.
+    """
+    y = outcome_matrix(test["FTR"])
+    ll_mkt = match_log_loss(test[cols["Marché"]].to_numpy(), y)
+    rows = []
+    for name, c in cols.items():
+        p = test[c].to_numpy()
+        ll = match_log_loss(p, y)
+        lo, hi = bootstrap_ci(ll, n_boot)
+        dlo, dhi = bootstrap_ci(ll - ll_mkt, n_boot)
+        rows.append({"modèle": name, "log_loss": ll.mean(), "ll_ic95_bas": lo, "ll_ic95_haut": hi,
+                     "delta_vs_marché": (ll - ll_mkt).mean(), "delta_ic95_bas": dlo,
+                     "delta_ic95_haut": dhi, "brier": brier(p, y),
+                     "accuracy_%": 100 * np.mean(p.argmax(1) == y.argmax(1))})
+    return pd.DataFrame(rows).sort_values("log_loss").reset_index(drop=True)
 
 
 def run_all(df, test_from, xi=0.0019, refit_days=28):
@@ -28,15 +57,10 @@ def run_all(df, test_from, xi=0.0019, refit_days=28):
 
     train_freq = outcome_matrix(df[df.Date < test_from]["FTR"]).mean(0)
     test = d[d.Date >= test_from].join(elo_df).join(dc_df, how="inner")
-    for c, v in zip(["fH", "fD", "fA"], train_freq):
+    for c, v in zip(["fH", "fD", "fA"], train_freq, strict=True):
         test[c] = v
 
-    y = outcome_matrix(test["FTR"])
-    metrics = pd.DataFrame(
-        [{"modèle": name, "log_loss": log_loss(test[c].to_numpy(), y),
-          "brier": brier(test[c].to_numpy(), y),
-          "accuracy_%": 100 * np.mean(test[c].to_numpy().argmax(1) == y.argmax(1))}
-         for name, c in COLS.items()]).sort_values("log_loss").reset_index(drop=True)
+    metrics = evaluate(test)
 
     final_dc = DixonColes(xi=xi).fit(df)
     return {"test": test, "metrics": metrics, "prefix": prefix,
@@ -86,7 +110,8 @@ def value_bets(test, prob_cols, odds_cols, edge=0.03, kelly_frac=0.25, max_frac=
     summary = {"paris": len(log), "roi_flat_%": 100 * flat.mean(),
                "ic95_roi_flat_%": (100 * np.percentile(boot, 2.5), 100 * np.percentile(boot, 97.5)),
                "roi_kelly_%": 100 * log["gain"].sum() / log["mise"].sum(),
-               "bankroll_finale": bank, "drawdown_max_%": 100 * ((peak - log["bankroll"]) / peak).max()}
+               "bankroll_finale": bank,
+               "drawdown_max_%": 100 * ((peak - log["bankroll"]) / peak).max()}
     return log, summary
 
 
@@ -106,10 +131,18 @@ def main():
 
     res = run_all(df, a.test_from, xi=a.xi)
     test = res["test"]
+    src = test["mkt_src"].value_counts() if "mkt_src" in test else {}
     print(f"\nPériode de test : {test.Date.min().date()} -> {test.Date.max().date()} "
-          f"({len(test)} matchs) | cotes marché : {res['prefix']}")
-    print("\n=== Qualité des probabilités (plus bas = mieux) ===")
+          f"({len(test)} matchs) | cotes marché : "
+          + ", ".join(f"{k} {v}" for k, v in dict(src).items()))
+    print("\n=== Qualité des probabilités (plus bas = mieux, IC95 bootstrap) ===")
     print(res["metrics"].round(4).to_string(index=False))
+    if "mkt_src" in test and test["mkt_src"].nunique() > 1:
+        print("\n=== Même tableau par source de cotes marché ===")
+        for s, g in test.groupby("mkt_src"):
+            m = evaluate(g)[["modèle", "log_loss", "delta_vs_marché", "delta_ic95_bas",
+                             "delta_ic95_haut"]]
+            print(f"-- {s} ({len(g)} matchs)\n" + m.round(4).to_string(index=False))
 
     print("\n=== Paris 'value' (Dixon-Coles), cotes d'exécution Bet365 si dispo ===")
     exec_cols = next(([f"{p}H", f"{p}D", f"{p}A"] for p in ("B365", "PSC")
@@ -119,7 +152,8 @@ def main():
         if s["paris"]:
             lo, hi = s["ic95_roi_flat_%"]
             print(f"edge>{edge:>4.0%} | {s['paris']:>4} paris | ROI flat {s['roi_flat_%']:+6.1f} % "
-                  f"[IC95 {lo:+.1f} ; {hi:+.1f}] | Kelly/4 : bankroll finale {s['bankroll_finale']:.0f}, "
+                  f"[IC95 {lo:+.1f} ; {hi:+.1f}] | Kelly/4 : bankroll finale "
+                  f"{s['bankroll_finale']:.0f}, "
                   f"drawdown max {s['drawdown_max_%']:.0f} %")
     print("\nLecture : si l'IC95 du ROI contient 0, on ne peut pas conclure à un avantage réel.")
 

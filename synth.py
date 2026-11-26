@@ -48,7 +48,8 @@ def make_synthetic(seasons=6, n_teams=18, seed=0, market_noise=0.05):
                 psc = rows_odds
             else:
                 b365 = rows_odds
-        df = pd.DataFrame({"Date": dates.floor("D"), "Season": f"{(2019 + s) % 100:02d}{(2020 + s) % 100:02d}",
+        season = f"{(2019 + s) % 100:02d}{(2020 + s) % 100:02d}"
+        df = pd.DataFrame({"Date": dates.floor("D"), "Season": season,
                            "HomeTeam": [teams[i] for i in h], "AwayTeam": [teams[i] for i in a],
                            "FTHG": gh, "FTAG": ga, **psc, **b365})
         rows.append(df)

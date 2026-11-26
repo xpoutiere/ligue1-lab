@@ -2,8 +2,8 @@
 import pandas as pd
 import streamlit as st
 
+from backtest import COLS, cumulative_logloss_gap, run_all, value_bets
 from core import load_data, market_baseline
-from backtest import run_all, cumulative_logloss_gap, value_bets, COLS
 
 st.set_page_config(page_title="Ligue 1 Lab", page_icon="⚽", layout="wide")
 st.title("⚽ Ligue 1 Lab")
@@ -35,7 +35,8 @@ def get_results(synth, start, xi):
 
 df = get_df(synthetic)
 d, table, prefix, calib = market_baseline(df)
-tab1, tab2, tab3, tab4 = st.tabs(["📊 Baseline marché", "🧠 Modèles", "💰 Paris value", "🏟️ Équipes"])
+tab1, tab2, tab3, tab4 = st.tabs(
+    ["📊 Baseline marché", "🧠 Modèles", "💰 Paris value", "🏟️ Équipes"])
 
 # ------------------------------------------------------------------ Baseline
 with tab1:
@@ -44,7 +45,7 @@ with tab1:
     c2.metric("Marge moyenne du bookmaker", f"{100 * d['margin'].mean():.2f} %")
     c3.metric("Log-loss du marché",
               f"{(table['log_loss'] * table['matchs']).sum() / table['matchs'].sum():.4f}")
-    st.dataframe(table.round(4), use_container_width=True, hide_index=True)
+    st.dataframe(table.round(4), width="stretch", hide_index=True)
     st.subheader("Calibration du marché")
     st.line_chart(calib.set_index("predite")[["observee"]])
     st.caption("Plus la courbe suit la diagonale, plus les cotes sont fiables.")
@@ -57,7 +58,7 @@ with tab2:
     st.subheader("Qui prédit le mieux ? (backtest temporel strict)")
     st.caption(f"{len(test)} matchs de test. Chaque prédiction n'utilise que le passé. "
                "Log-loss et Brier : plus bas = mieux.")
-    st.dataframe(res["metrics"].round(4), use_container_width=True, hide_index=True)
+    st.dataframe(res["metrics"].round(4), width="stretch", hide_index=True)
     st.bar_chart(res["metrics"].set_index("modèle")[["log_loss"]])
 
     st.subheader("Écart cumulé de log-loss vs marché")
@@ -83,7 +84,8 @@ with tab3:
         lo, hi = s["ic95_roi_flat_%"]
         m1, m2, m3, m4 = st.columns(4)
         m1.metric("Paris", s["paris"])
-        m2.metric("ROI (mise fixe)", f"{s['roi_flat_%']:+.1f} %", help=f"IC95 : [{lo:+.1f} ; {hi:+.1f}]")
+        m2.metric("ROI (mise fixe)", f"{s['roi_flat_%']:+.1f} %",
+                  help=f"IC95 : [{lo:+.1f} ; {hi:+.1f}]")
         m3.metric("Bankroll finale (base 100)", f"{s['bankroll_finale']:.0f}")
         m4.metric("Drawdown max", f"{s['drawdown_max_%']:.0f} %")
         st.line_chart(log.set_index("Date")[["bankroll"]])
@@ -100,8 +102,8 @@ with tab4:
     elo = (pd.Series(res["elo_ratings"], name="Elo").sort_values(ascending=False)
            .round(0).rename_axis("équipe").reset_index())
     c1.subheader("Classement Elo")
-    c1.dataframe(elo, hide_index=True, use_container_width=True)
+    c1.dataframe(elo, hide_index=True, width="stretch")
     c2.subheader("Forces Dixon-Coles")
-    c2.dataframe(res["dc"].strengths().round(3), hide_index=True, use_container_width=True)
+    c2.dataframe(res["dc"].strengths().round(3), hide_index=True, width="stretch")
     st.caption(f"Avantage domicile estimé : {res['dc'].home_:.3f} (log-buts) | "
                f"ρ Dixon-Coles : {res['dc'].rho_:.3f}")
