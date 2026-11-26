@@ -112,7 +112,7 @@ export function ResponsibleBanner() {
 
 export function Footer({ generatedAt, version }: { generatedAt: string; version: string }) {
   const { t, lang } = useI18n();
-  const d = new Date(generatedAt).toLocaleString(lang === "fr" ? "fr-FR" : "en-GB", { dateStyle: "long", timeStyle: "short" });
+  const d = new Date(generatedAt).toLocaleString(lang === "fr" ? "fr-FR" : "en-GB", { dateStyle: "long", timeStyle: "short", timeZone: "Europe/Paris" });
   return (
     <footer className="mt-24 border-t border-border">
       <div className="mx-auto grid max-w-[1280px] gap-6 px-4 py-10 text-sm text-muted md:grid-cols-[1fr_2fr] md:px-8">

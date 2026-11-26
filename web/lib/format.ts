@@ -31,7 +31,7 @@ export function ci(lo: number | null | undefined, hi: number | null | undefined,
 export function date(d: string, lang: Lang = "fr", withYear = true): string {
   const dt = new Date(`${d}T12:00:00Z`);
   return dt.toLocaleDateString(loc(lang), {
-    weekday: "short", day: "numeric", month: "short", ...(withYear ? { year: "numeric" } : {}),
+    weekday: "short", day: "numeric", month: "short", timeZone: "UTC", ...(withYear ? { year: "numeric" } : {}),
   });
 }
 
