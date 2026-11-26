@@ -1,0 +1,16 @@
+{
+ "meta": {
+  "generated_at": "2026-11-26T12:17:53Z",
+  "model_version": "0.2.0+5dcb754",
+  "data_period": [
+   "2019-08-09",
+   "2026-11-22"
+  ],
+  "test_period": [
+   "2024-08-16",
+   "2026-11-22"
+  ],
+  "source": "football-data.co.uk"
+ },
+ "entries": []
+}

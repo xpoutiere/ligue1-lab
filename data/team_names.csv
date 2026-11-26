@@ -1,30 +1,30 @@
-canonical,understat,fbref
-Ajaccio,Ajaccio,Ajaccio
-Amiens,Amiens,Amiens
-Angers,Angers,Angers
-Auxerre,Auxerre,Auxerre
-Bordeaux,Bordeaux,Bordeaux
-Brest,Brest,Brest
-Clermont,Clermont Foot,Clermont Foot
-Dijon,Dijon,Dijon
-Le Havre,Le Havre,Le Havre
-Le Mans,Le Mans,Le Mans
-Lens,Lens,Lens
-Lille,Lille,Lille
-Lorient,Lorient,Lorient
-Lyon,Lyon,Lyon
-Marseille,Marseille,Marseille
-Metz,Metz,Metz
-Monaco,Monaco,Monaco
-Montpellier,Montpellier,Montpellier
-Nantes,Nantes,Nantes
-Nice,Nice,Nice
-Nimes,Nimes,Nîmes
-Paris FC,Paris FC,Paris FC
-Paris SG,Paris Saint Germain,Paris S-G
-Reims,Reims,Reims
-Rennes,Rennes,Rennes
-St Etienne,Saint-Etienne,Saint-Étienne
-Strasbourg,Strasbourg,Strasbourg
-Toulouse,Toulouse,Toulouse
-Troyes,Troyes,Troyes
+canonical,understat,fbref,code,stade
+Ajaccio,Ajaccio,Ajaccio,ACA,Stade François-Coty
+Amiens,Amiens,Amiens,AMI,Stade de la Licorne
+Angers,Angers,Angers,ANG,Stade Raymond-Kopa
+Auxerre,Auxerre,Auxerre,AUX,Stade de l'Abbé-Deschamps
+Bordeaux,Bordeaux,Bordeaux,BOR,Matmut Atlantique
+Brest,Brest,Brest,BRE,Stade Francis-Le Blé
+Clermont,Clermont Foot,Clermont Foot,CLE,Stade Gabriel-Montpied
+Dijon,Dijon,Dijon,DIJ,Stade Gaston-Gérard
+Le Havre,Le Havre,Le Havre,HAC,Stade Océane
+Le Mans,Le Mans,Le Mans,LEM,Stade Marie-Marvingt
+Lens,Lens,Lens,RCL,Stade Bollaert-Delelis
+Lille,Lille,Lille,LIL,Stade Pierre-Mauroy
+Lorient,Lorient,Lorient,LOR,Stade du Moustoir
+Lyon,Lyon,Lyon,LYO,Groupama Stadium
+Marseille,Marseille,Marseille,MAR,Orange Vélodrome
+Metz,Metz,Metz,MET,Stade Saint-Symphorien
+Monaco,Monaco,Monaco,MON,Stade Louis-II
+Montpellier,Montpellier,Montpellier,MTP,Stade de la Mosson
+Nantes,Nantes,Nantes,NAN,Stade de la Beaujoire
+Nice,Nice,Nice,NIC,Allianz Riviera
+Nimes,Nimes,Nîmes,NIM,Stade des Costières
+Paris FC,Paris FC,Paris FC,PFC,Stade Jean-Bouin
+Paris SG,Paris Saint Germain,Paris S-G,PSG,Parc des Princes
+Reims,Reims,Reims,REI,Stade Auguste-Delaune
+Rennes,Rennes,Rennes,REN,Roazhon Park
+St Etienne,Saint-Etienne,Saint-Étienne,STE,Stade Geoffroy-Guichard
+Strasbourg,Strasbourg,Strasbourg,STR,Stade de la Meinau
+Toulouse,Toulouse,Toulouse,TFC,Stadium de Toulouse
+Troyes,Troyes,Troyes,TRO,Stade de l'Aube

@@ -1,0 +1,432 @@
+{
+ "meta": {
+  "generated_at": "2026-11-26T12:17:53Z",
+  "model_version": "0.2.0+5dcb754",
+  "data_period": [
+   "2019-08-09",
+   "2026-11-22"
+  ],
+  "test_period": [
+   "2024-08-16",
+   "2026-11-22"
+  ],
+  "source": "football-data.co.uk"
+ },
+ "n_matchs": 2436,
+ "periode": [
+  "2019-08-09",
+  "2026-11-22"
+ ],
+ "tests": [
+  {
+   "label": "H1 outsiders (cote ≥ 6)",
+   "hypothese": "outsiders sur-estimés (résidu < 0)",
+   "sens_attendu": -1,
+   "resid_pts": {
+    "n": 716,
+    "moyenne": -1.151221,
+    "ic95": [
+     -3.381055,
+     1.165448
+    ],
+    "p": 0.3032
+   },
+   "roi_cloture_%": {
+    "n": 716,
+    "moyenne": -13.969274,
+    "ic95": [
+     -32.559078,
+     5.849476
+    ],
+    "p": 0.1532
+   },
+   "roi_b365_%": {
+    "n": 716,
+    "moyenne": -17.178771,
+    "ic95": [
+     -34.986034,
+     1.781599
+    ],
+    "p": 0.0816
+   },
+   "p_implicite_moy": 0.119054,
+   "frequence": 0.107542,
+   "p_holm": 1.0,
+   "p_bh": 0.5908,
+   "verdict": "pas d'effet significatif après correction",
+   "exploitable": "non exploitable après marge"
+  },
+  {
+   "label": "H1 grands favoris (cote < 1,5)",
+   "hypothese": "favoris sous-estimés (résidu > 0)",
+   "sens_attendu": 1,
+   "resid_pts": {
+    "n": 410,
+    "moyenne": 2.238825,
+    "ic95": [
+     -1.969274,
+     6.280074
+    ],
+    "p": 0.2928
+   },
+   "roi_cloture_%": {
+    "n": 410,
+    "moyenne": -0.231707,
+    "ic95": [
+     -5.888354,
+     5.249207
+    ],
+    "p": 0.9368
+   },
+   "roi_b365_%": {
+    "n": 410,
+    "moyenne": -0.097561,
+    "ic95": [
+     -5.980549,
+     5.544268
+    ],
+    "p": 0.9768
+   },
+   "p_implicite_moy": 0.728831,
+   "frequence": 0.75122,
+   "p_holm": 1.0,
+   "p_bh": 0.5908,
+   "verdict": "pas d'effet significatif après correction",
+   "exploitable": "non exploitable après marge"
+  },
+  {
+   "label": "H2a série ≥ 3 victoires",
+   "hypothese": "équipe en forme sur-estimée (résidu < 0)",
+   "sens_attendu": -1,
+   "resid_pts": {
+    "n": 347,
+    "moyenne": -1.784224,
+    "ic95": [
+     -6.347819,
+     3.028003
+    ],
+    "p": 0.4656
+   },
+   "roi_cloture_%": {
+    "n": 347,
+    "moyenne": -10.270893,
+    "ic95": [
+     -21.531196,
+     1.798775
+    ],
+    "p": 0.0896
+   },
+   "roi_b365_%": {
+    "n": 347,
+    "moyenne": -12.45245,
+    "ic95": [
+     -23.729179,
+     -0.876081
+    ],
+    "p": 0.0376
+   },
+   "p_implicite_moy": 0.504874,
+   "frequence": 0.487032,
+   "p_holm": 1.0,
+   "p_bh": 0.65184,
+   "verdict": "pas d'effet significatif après correction",
+   "exploitable": "non exploitable après marge"
+  },
+  {
+   "label": "H2b série ≥ 3 défaites",
+   "hypothese": "équipe en crise sous-estimée (résidu > 0)",
+   "sens_attendu": 1,
+   "resid_pts": {
+    "n": 339,
+    "moyenne": -2.192134,
+    "ic95": [
+     -6.631448,
+     2.198573
+    ],
+    "p": 0.3376
+   },
+   "roi_cloture_%": {
+    "n": 339,
+    "moyenne": -12.59292,
+    "ic95": [
+     -30.295723,
+     6.694469
+    ],
+    "p": 0.194
+   },
+   "roi_b365_%": {
+    "n": 339,
+    "moyenne": -14.870206,
+    "ic95": [
+     -32.127139,
+     2.858702
+    ],
+    "p": 0.1064
+   },
+   "p_implicite_moy": 0.284458,
+   "frequence": 0.262537,
+   "p_holm": 1.0,
+   "p_bh": 0.5908,
+   "verdict": "pas d'effet significatif après correction",
+   "exploitable": "non exploitable après marge"
+  },
+  {
+   "label": "H3 victoire PSG / OM",
+   "hypothese": "clubs populaires sur-estimés (résidu < 0)",
+   "sens_attendu": -1,
+   "resid_pts": {
+    "n": 507,
+    "moyenne": 2.306123,
+    "ic95": [
+     -1.607619,
+     6.264955
+    ],
+    "p": 0.262
+   },
+   "roi_cloture_%": {
+    "n": 507,
+    "moyenne": 1.232742,
+    "ic95": [
+     -6.751677,
+     9.154734
+    ],
+    "p": 0.7792
+   },
+   "roi_b365_%": {
+    "n": 507,
+    "moyenne": -1.325444,
+    "ic95": [
+     -8.949704,
+     6.01573
+    ],
+    "p": 0.722
+   },
+   "p_implicite_moy": 0.592323,
+   "frequence": 0.615385,
+   "p_holm": 1.0,
+   "p_bh": 0.5908,
+   "verdict": "pas d'effet significatif après correction",
+   "exploitable": "non exploitable après marge"
+  },
+  {
+   "label": "H4 victoire à domicile",
+   "hypothese": "domicile sur-estimé (résidu < 0)",
+   "sens_attendu": -1,
+   "resid_pts": {
+    "n": 2434,
+    "moyenne": -0.19978,
+    "ic95": [
+     -2.050568,
+     1.696221
+    ],
+    "p": 0.8364
+   },
+   "roi_cloture_%": {
+    "n": 2434,
+    "moyenne": -4.644618,
+    "ic95": [
+     -9.724373,
+     0.728605
+    ],
+    "p": 0.0876
+   },
+   "roi_b365_%": {
+    "n": 2434,
+    "moyenne": -7.499178,
+    "ic95": [
+     -12.465694,
+     -2.446467
+    ],
+    "p": 0.0044
+   },
+   "p_implicite_moy": 0.432976,
+   "frequence": 0.430978,
+   "p_holm": 1.0,
+   "p_bh": 0.8364,
+   "verdict": "pas d'effet significatif après correction",
+   "exploitable": "non exploitable après marge"
+  },
+  {
+   "label": "H5 favori des matchs médiatisés",
+   "hypothese": "favori sur-estimé (résidu < 0)",
+   "sens_attendu": -1,
+   "resid_pts": {
+    "n": 205,
+    "moyenne": 1.976651,
+    "ic95": [
+     -4.534944,
+     8.833998
+    ],
+    "p": 0.5664
+   },
+   "roi_cloture_%": {
+    "n": 205,
+    "moyenne": 2.995122,
+    "ic95": [
+     -11.165976,
+     16.971341
+    ],
+    "p": 0.6844
+   },
+   "roi_b365_%": {
+    "n": 205,
+    "moyenne": 1.380488,
+    "ic95": [
+     -12.126951,
+     15.205488
+    ],
+    "p": 0.8424
+   },
+   "p_implicite_moy": 0.507063,
+   "frequence": 0.526829,
+   "p_holm": 1.0,
+   "p_bh": 0.6608,
+   "verdict": "pas d'effet significatif après correction",
+   "exploitable": "non exploitable après marge"
+  }
+ ],
+ "par_tranche_de_cote": [
+  {
+   "tranche": "1-1.5",
+   "n": 410,
+   "p_implicite": 0.728831,
+   "frequence": 0.75122,
+   "roi_cloture_%": -0.231707,
+   "roi_cloture_ic95": [
+    -6.000305,
+    5.202866
+   ],
+   "roi_b365_%": -0.097561,
+   "roi_b365_ic95": [
+    -5.980549,
+    5.544268
+   ]
+  },
+  {
+   "tranche": "1.5-2",
+   "n": 850,
+   "p_implicite": 0.557764,
+   "frequence": 0.561176,
+   "roi_cloture_%": -2.158824,
+   "roi_cloture_ic95": [
+    -8.105971,
+    3.627206
+   ],
+   "roi_b365_%": -2.749412,
+   "roi_b365_ic95": [
+    -8.627382,
+    2.976765
+   ]
+  },
+  {
+   "tranche": "2-2.5",
+   "n": 844,
+   "p_implicite": 0.436181,
+   "frequence": 0.446682,
+   "roi_cloture_%": -0.159953,
+   "roi_cloture_ic95": [
+    -7.392506,
+    7.17423
+   ],
+   "roi_b365_%": -1.738152,
+   "roi_b365_ic95": [
+    -9.20391,
+    5.605509
+   ]
+  },
+  {
+   "tranche": "2.5-3",
+   "n": 626,
+   "p_implicite": 0.354218,
+   "frequence": 0.345048,
+   "roi_cloture_%": -4.979233,
+   "roi_cloture_ic95": [
+    -15.11861,
+    5.605511
+   ],
+   "roi_b365_%": -7.873802,
+   "roi_b365_ic95": [
+    -17.956989,
+    1.832268
+   ]
+  },
+  {
+   "tranche": "3-4",
+   "n": 2508,
+   "p_implicite": 0.281518,
+   "frequence": 0.279506,
+   "roi_cloture_%": -3.261563,
+   "roi_cloture_ic95": [
+    -9.195923,
+    2.862909
+   ],
+   "roi_b365_%": -4.912679,
+   "roi_b365_ic95": [
+    -10.951525,
+    1.055632
+   ]
+  },
+  {
+   "tranche": "4-6",
+   "n": 1348,
+   "p_implicite": 0.20765,
+   "frequence": 0.206231,
+   "roi_cloture_%": -3.986647,
+   "roi_cloture_ic95": [
+    -13.98572,
+    6.164911
+   ],
+   "roi_b365_%": -8.618694,
+   "roi_b365_ic95": [
+    -18.105508,
+    1.175074
+   ]
+  },
+  {
+   "tranche": "6-10",
+   "n": 551,
+   "p_implicite": 0.132772,
+   "frequence": 0.114338,
+   "roi_cloture_%": -18.105263,
+   "roi_cloture_ic95": [
+    -36.774047,
+    1.601134
+   ],
+   "roi_b365_%": -21.869328,
+   "roi_b365_ic95": [
+    -39.294465,
+    -2.856171
+   ]
+  },
+  {
+   "tranche": "10-100",
+   "n": 165,
+   "p_implicite": 0.073244,
+   "frequence": 0.084848,
+   "roi_cloture_%": -0.157576,
+   "roi_cloture_ic95": [
+    -47.83197,
+    54.549242
+   ],
+   "roi_b365_%": -1.515152,
+   "roi_b365_ic95": [
+    -50.007576,
+    52.128788
+   ]
+  }
+ ],
+ "groupes": {
+  "populaires": [
+   "Paris SG",
+   "Marseille"
+  ],
+  "mediatises": [
+   "Lens",
+   "Lille",
+   "Lyon",
+   "Marseille",
+   "Monaco",
+   "Paris SG"
+  ]
+ }
+}

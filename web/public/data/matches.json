@@ -1,0 +1,460 @@
+{
+ "meta": {
+  "generated_at": "2026-11-26T12:17:53Z",
+  "model_version": "0.2.0+5dcb754",
+  "data_period": [
+   "2019-08-09",
+   "2026-11-22"
+  ],
+  "test_period": [
+   "2024-08-16",
+   "2026-11-22"
+  ],
+  "source": "football-data.co.uk"
+ },
+ "model_name": "Dixon-Coles",
+ "upcoming": [],
+ "recent": [
+  {
+   "date": "2026-11-20",
+   "time": "19:45",
+   "home": {
+    "name": "Troyes",
+    "code": "TRO",
+    "stadium": "Stade de l'Aube",
+    "form": [
+     "D",
+     "D",
+     "N",
+     "V",
+     "D"
+    ]
+   },
+   "away": {
+    "name": "Le Havre",
+    "code": "HAC",
+    "stadium": "Stade Océane",
+    "form": [
+     "D",
+     "D",
+     "D",
+     "D",
+     "D"
+    ]
+   },
+   "model": [
+    0.336725,
+    0.310191,
+    0.353083
+   ],
+   "market": [
+    0.432203,
+    0.279661,
+    0.288136
+   ],
+   "odds": [
+    2.2,
+    3.4,
+    3.2
+   ],
+   "market_source": "B365C",
+   "result": "H",
+   "score": [
+    3,
+    1
+   ]
+  },
+  {
+   "date": "2026-11-21",
+   "time": "16:15",
+   "home": {
+    "name": "Nice",
+    "code": "NIC",
+    "stadium": "Allianz Riviera",
+    "form": [
+     "V",
+     "D",
+     "V",
+     "V",
+     "V"
+    ]
+   },
+   "away": {
+    "name": "Paris SG",
+    "code": "PSG",
+    "stadium": "Parc des Princes",
+    "form": [
+     "V",
+     "V",
+     "V",
+     "V",
+     "V"
+    ]
+   },
+   "model": [
+    0.18588,
+    0.225114,
+    0.589005
+   ],
+   "market": [
+    0.151702,
+    0.180597,
+    0.667701
+   ],
+   "odds": [
+    6.0,
+    5.0,
+    1.45
+   ],
+   "market_source": "B365C",
+   "result": "A",
+   "score": [
+    2,
+    3
+   ]
+  },
+  {
+   "date": "2026-11-21",
+   "time": "19:45",
+   "home": {
+    "name": "Lens",
+    "code": "RCL",
+    "stadium": "Stade Bollaert-Delelis",
+    "form": [
+     "V",
+     "V",
+     "V",
+     "D",
+     "D"
+    ]
+   },
+   "away": {
+    "name": "Toulouse",
+    "code": "TFC",
+    "stadium": "Stadium de Toulouse",
+    "form": [
+     "N",
+     "V",
+     "N",
+     "D",
+     "V"
+    ]
+   },
+   "model": [
+    0.543395,
+    0.246414,
+    0.210191
+   ],
+   "market": [
+    0.42767,
+    0.268821,
+    0.303508
+   ],
+   "odds": [
+    1.85,
+    3.9,
+    3.8
+   ],
+   "market_source": "B365C",
+   "result": "D",
+   "score": [
+    1,
+    1
+   ]
+  },
+  {
+   "date": "2026-11-21",
+   "time": "19:45",
+   "home": {
+    "name": "Lille",
+    "code": "LIL",
+    "stadium": "Stade Pierre-Mauroy",
+    "form": [
+     "V",
+     "N",
+     "N",
+     "V",
+     "V"
+    ]
+   },
+   "away": {
+    "name": "Lyon",
+    "code": "LYO",
+    "stadium": "Groupama Stadium",
+    "form": [
+     "D",
+     "V",
+     "D",
+     "V",
+     "D"
+    ]
+   },
+   "model": [
+    0.451886,
+    0.282968,
+    0.265146
+   ],
+   "market": [
+    0.413495,
+    0.306787,
+    0.279718
+   ],
+   "odds": [
+    2.25,
+    3.3,
+    3.3
+   ],
+   "market_source": "B365C",
+   "result": "A",
+   "score": [
+    0,
+    1
+   ]
+  },
+  {
+   "date": "2026-11-21",
+   "time": "19:45",
+   "home": {
+    "name": "Monaco",
+    "code": "MON",
+    "stadium": "Stade Louis-II",
+    "form": [
+     "N",
+     "D",
+     "N",
+     "D",
+     "N"
+    ]
+   },
+   "away": {
+    "name": "Auxerre",
+    "code": "AUX",
+    "stadium": "Stade de l'Abbé-Deschamps",
+    "form": [
+     "D",
+     "V",
+     "N",
+     "D",
+     "D"
+    ]
+   },
+   "model": [
+    0.626432,
+    0.209314,
+    0.164255
+   ],
+   "market": [
+    0.695688,
+    0.199186,
+    0.105126
+   ],
+   "odds": [
+    1.42,
+    5.0,
+    7.0
+   ],
+   "market_source": "B365C",
+   "result": "D",
+   "score": [
+    1,
+    1
+   ]
+  },
+  {
+   "date": "2026-11-21",
+   "time": "19:45",
+   "home": {
+    "name": "Strasbourg",
+    "code": "STR",
+    "stadium": "Stade de la Meinau",
+    "form": [
+     "D",
+     "D",
+     "D",
+     "V",
+     "D"
+    ]
+   },
+   "away": {
+    "name": "Brest",
+    "code": "BRE",
+    "stadium": "Stade Francis-Le Blé",
+    "form": [
+     "V",
+     "N",
+     "D",
+     "V",
+     "V"
+    ]
+   },
+   "model": [
+    0.496512,
+    0.230757,
+    0.27273
+   ],
+   "market": [
+    0.435045,
+    0.265861,
+    0.299094
+   ],
+   "odds": [
+    2.2,
+    3.8,
+    3.0
+   ],
+   "market_source": "B365C",
+   "result": "A",
+   "score": [
+    0,
+    1
+   ]
+  },
+  {
+   "date": "2026-11-22",
+   "time": "14:00",
+   "home": {
+    "name": "Paris FC",
+    "code": "PFC",
+    "stadium": "Stade Jean-Bouin",
+    "form": [
+     "D",
+     "V",
+     "D",
+     "V",
+     "V"
+    ]
+   },
+   "away": {
+    "name": "Angers",
+    "code": "ANG",
+    "stadium": "Stade Raymond-Kopa",
+    "form": [
+     "D",
+     "D",
+     "N",
+     "D",
+     "D"
+    ]
+   },
+   "model": [
+    0.652116,
+    0.222794,
+    0.12509
+   ],
+   "market": [
+    0.718358,
+    0.177879,
+    0.103763
+   ],
+   "odds": [
+    1.33,
+    5.5,
+    8.5
+   ],
+   "market_source": "B365C",
+   "result": "H",
+   "score": [
+    4,
+    0
+   ]
+  },
+  {
+   "date": "2026-11-22",
+   "time": "16:15",
+   "home": {
+    "name": "Lorient",
+    "code": "LOR",
+    "stadium": "Stade du Moustoir",
+    "form": [
+     "V",
+     "V",
+     "N",
+     "D",
+     "V"
+    ]
+   },
+   "away": {
+    "name": "Rennes",
+    "code": "REN",
+    "stadium": "Roazhon Park",
+    "form": [
+     "V",
+     "D",
+     "V",
+     "D",
+     "D"
+    ]
+   },
+   "model": [
+    0.363393,
+    0.251665,
+    0.384941
+   ],
+   "market": [
+    0.236532,
+    0.278273,
+    0.485194
+   ],
+   "odds": [
+    2.8,
+    3.5,
+    2.45
+   ],
+   "market_source": "B365C",
+   "result": "D",
+   "score": [
+    1,
+    1
+   ]
+  },
+  {
+   "date": "2026-11-22",
+   "time": "19:45",
+   "home": {
+    "name": "Marseille",
+    "code": "MAR",
+    "stadium": "Orange Vélodrome",
+    "form": [
+     "V",
+     "V",
+     "V",
+     "V",
+     "V"
+    ]
+   },
+   "away": {
+    "name": "Le Mans",
+    "code": "LEM",
+    "stadium": "Stade Marie-Marvingt",
+    "form": [
+     "D",
+     "D",
+     "N",
+     "D",
+     "N"
+    ]
+   },
+   "model": [
+    0.721349,
+    0.163061,
+    0.11559
+   ],
+   "market": [
+    0.638696,
+    0.21006,
+    0.151243
+   ],
+   "odds": [
+    1.44,
+    4.75,
+    6.5
+   ],
+   "market_source": "B365C",
+   "result": "A",
+   "score": [
+    2,
+    3
+   ]
+  }
+ ]
+}

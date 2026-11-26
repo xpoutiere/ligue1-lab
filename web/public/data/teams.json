@@ -1,0 +1,380 @@
+{
+ "meta": {
+  "generated_at": "2026-11-26T12:17:53Z",
+  "model_version": "0.2.0+5dcb754",
+  "data_period": [
+   "2019-08-09",
+   "2026-11-22"
+  ],
+  "test_period": [
+   "2024-08-16",
+   "2026-11-22"
+  ],
+  "source": "football-data.co.uk"
+ },
+ "season": "2627",
+ "teams": [
+  {
+   "name": "Paris SG",
+   "code": "PSG",
+   "stadium": "Parc des Princes",
+   "elo": 1748.81481,
+   "attack": 0.753221,
+   "defense": 0.402915,
+   "form": [
+    "V",
+    "V",
+    "V",
+    "V",
+    "V"
+   ],
+   "j": 11,
+   "pts": 26,
+   "bp": 25,
+   "bc": 12,
+   "rank": 1
+  },
+  {
+   "name": "Paris FC",
+   "code": "PFC",
+   "stadium": "Stade Jean-Bouin",
+   "elo": 1605.472261,
+   "attack": 0.383848,
+   "defense": 0.180719,
+   "form": [
+    "V",
+    "D",
+    "V",
+    "V",
+    "V"
+   ],
+   "j": 11,
+   "pts": 23,
+   "bp": 21,
+   "bc": 10,
+   "rank": 2
+  },
+  {
+   "name": "Lille",
+   "code": "LIL",
+   "stadium": "Stade Pierre-Mauroy",
+   "elo": 1630.583938,
+   "attack": 0.275067,
+   "defense": 0.413441,
+   "form": [
+    "N",
+    "N",
+    "V",
+    "V",
+    "D"
+   ],
+   "j": 11,
+   "pts": 21,
+   "bp": 14,
+   "bc": 8,
+   "rank": 3
+  },
+  {
+   "name": "Lyon",
+   "code": "LYO",
+   "stadium": "Groupama Stadium",
+   "elo": 1610.481571,
+   "attack": 0.41462,
+   "defense": 0.202693,
+   "form": [
+    "V",
+    "D",
+    "V",
+    "D",
+    "V"
+   ],
+   "j": 11,
+   "pts": 20,
+   "bp": 16,
+   "bc": 9,
+   "rank": 4
+  },
+  {
+   "name": "Marseille",
+   "code": "MAR",
+   "stadium": "Orange Vélodrome",
+   "elo": 1578.008301,
+   "attack": 0.558952,
+   "defense": 0.058713,
+   "form": [
+    "V",
+    "V",
+    "V",
+    "V",
+    "D"
+   ],
+   "j": 11,
+   "pts": 18,
+   "bp": 24,
+   "bc": 17,
+   "rank": 5
+  },
+  {
+   "name": "Brest",
+   "code": "BRE",
+   "stadium": "Stade Francis-Le Blé",
+   "elo": 1534.146107,
+   "attack": 0.286735,
+   "defense": 0.009602,
+   "form": [
+    "N",
+    "D",
+    "V",
+    "V",
+    "V"
+   ],
+   "j": 11,
+   "pts": 18,
+   "bp": 19,
+   "bc": 12,
+   "rank": 6
+  },
+  {
+   "name": "Nice",
+   "code": "NIC",
+   "stadium": "Allianz Riviera",
+   "elo": 1511.342552,
+   "attack": 0.248104,
+   "defense": 0.049307,
+   "form": [
+    "D",
+    "V",
+    "V",
+    "V",
+    "D"
+   ],
+   "j": 11,
+   "pts": 17,
+   "bp": 17,
+   "bc": 15,
+   "rank": 7
+  },
+  {
+   "name": "Monaco",
+   "code": "MON",
+   "stadium": "Stade Louis-II",
+   "elo": 1579.779016,
+   "attack": 0.464243,
+   "defense": 0.085967,
+   "form": [
+    "D",
+    "N",
+    "D",
+    "N",
+    "N"
+   ],
+   "j": 11,
+   "pts": 17,
+   "bp": 14,
+   "bc": 12,
+   "rank": 8
+  },
+  {
+   "name": "Rennes",
+   "code": "REN",
+   "stadium": "Roazhon Park",
+   "elo": 1561.579152,
+   "attack": 0.494542,
+   "defense": -0.046186,
+   "form": [
+    "D",
+    "V",
+    "D",
+    "D",
+    "N"
+   ],
+   "j": 11,
+   "pts": 17,
+   "bp": 22,
+   "bc": 22,
+   "rank": 9
+  },
+  {
+   "name": "Lorient",
+   "code": "LOR",
+   "stadium": "Stade du Moustoir",
+   "elo": 1511.916734,
+   "attack": 0.127359,
+   "defense": 0.080733,
+   "form": [
+    "V",
+    "N",
+    "D",
+    "V",
+    "N"
+   ],
+   "j": 11,
+   "pts": 16,
+   "bp": 10,
+   "bc": 9,
+   "rank": 10
+  },
+  {
+   "name": "Lens",
+   "code": "RCL",
+   "stadium": "Stade Bollaert-Delelis",
+   "elo": 1579.435145,
+   "attack": 0.422399,
+   "defense": 0.230775,
+   "form": [
+    "V",
+    "V",
+    "D",
+    "D",
+    "N"
+   ],
+   "j": 11,
+   "pts": 14,
+   "bp": 18,
+   "bc": 16,
+   "rank": 11
+  },
+  {
+   "name": "Toulouse",
+   "code": "TFC",
+   "stadium": "Stadium de Toulouse",
+   "elo": 1528.703126,
+   "attack": 0.231189,
+   "defense": 0.09611,
+   "form": [
+    "V",
+    "N",
+    "D",
+    "V",
+    "N"
+   ],
+   "j": 11,
+   "pts": 14,
+   "bp": 16,
+   "bc": 15,
+   "rank": 12
+  },
+  {
+   "name": "Le Mans",
+   "code": "LEM",
+   "stadium": "Stade Marie-Marvingt",
+   "elo": 1440.965712,
+   "attack": 0.254454,
+   "defense": -0.156969,
+   "form": [
+    "D",
+    "N",
+    "D",
+    "N",
+    "V"
+   ],
+   "j": 11,
+   "pts": 11,
+   "bp": 15,
+   "bc": 21,
+   "rank": 13
+  },
+  {
+   "name": "Troyes",
+   "code": "TRO",
+   "stadium": "Stade de l'Aube",
+   "elo": 1410.245817,
+   "attack": -0.113554,
+   "defense": -0.120315,
+   "form": [
+    "D",
+    "N",
+    "V",
+    "D",
+    "V"
+   ],
+   "j": 11,
+   "pts": 11,
+   "bp": 10,
+   "bc": 18,
+   "rank": 14
+  },
+  {
+   "name": "Auxerre",
+   "code": "AUX",
+   "stadium": "Stade de l'Abbé-Deschamps",
+   "elo": 1446.982723,
+   "attack": 0.087541,
+   "defense": -0.047527,
+   "form": [
+    "V",
+    "N",
+    "D",
+    "D",
+    "N"
+   ],
+   "j": 11,
+   "pts": 11,
+   "bp": 14,
+   "bc": 25,
+   "rank": 15
+  },
+  {
+   "name": "Strasbourg",
+   "code": "STR",
+   "stadium": "Stade de la Meinau",
+   "elo": 1494.924156,
+   "attack": 0.398831,
+   "defense": -0.027848,
+   "form": [
+    "D",
+    "D",
+    "V",
+    "D",
+    "D"
+   ],
+   "j": 11,
+   "pts": 10,
+   "bp": 18,
+   "bc": 23,
+   "rank": 16
+  },
+  {
+   "name": "Angers",
+   "code": "ANG",
+   "stadium": "Stade Raymond-Kopa",
+   "elo": 1365.332055,
+   "attack": -0.2228,
+   "defense": -0.112188,
+   "form": [
+    "D",
+    "N",
+    "D",
+    "D",
+    "D"
+   ],
+   "j": 11,
+   "pts": 8,
+   "bp": 9,
+   "bc": 23,
+   "rank": 17
+  },
+  {
+   "name": "Le Havre",
+   "code": "HAC",
+   "stadium": "Stade Océane",
+   "elo": 1337.982777,
+   "attack": -0.052568,
+   "defense": -0.134353,
+   "form": [
+    "D",
+    "D",
+    "D",
+    "D",
+    "D"
+   ],
+   "j": 11,
+   "pts": 2,
+   "bp": 10,
+   "bc": 25,
+   "rank": 18
+  }
+ ],
+ "home_advantage": 0.208751,
+ "rho": -0.045095
+}

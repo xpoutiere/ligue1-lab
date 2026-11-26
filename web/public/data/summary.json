@@ -1,0 +1,44 @@
+{
+ "meta": {
+  "generated_at": "2026-11-26T12:17:53Z",
+  "model_version": "0.2.0+5dcb754",
+  "data_period": [
+   "2019-08-09",
+   "2026-11-22"
+  ],
+  "test_period": [
+   "2024-08-16",
+   "2026-11-22"
+  ],
+  "source": "football-data.co.uk"
+ },
+ "n_matches": 2436,
+ "n_test": 711,
+ "market_log_loss": 0.965761,
+ "market_ll_ci": [
+  0.932402,
+  1.000298
+ ],
+ "best_model": "Combinaison",
+ "best_model_delta": 0.000879,
+ "best_model_delta_ci": [
+  -0.000423,
+  0.002077
+ ],
+ "lgbm_log_loss": 1.003723,
+ "lgbm_delta": 0.037962,
+ "lgbm_delta_ci": [
+  0.017413,
+  0.056961
+ ],
+ "pinnacle_margin_pct": 2.769072,
+ "b365_margin_pct": 5.456218,
+ "clv_pct": {
+  "Dixon-Coles": -5.504942,
+  "Elo": -5.821786,
+  "LightGBM": -4.791294
+ },
+ "n_bias_tests": 7,
+ "n_bias_significant": 0,
+ "accuracy_market_pct": 54.43038
+}
