@@ -28,3 +28,6 @@ web/.next/
 web/out/
 web/next-env.d.ts
 web/*.tsbuildinfo
+
+# Résultats intermédiaires lourds (régénérables : python tasks.py train)
+artifacts/

@@ -13,3 +13,8 @@ Format : date · décision · alternatives · raison.
 | 26/11/2026 | `tasks.py` (multiplateforme) + `Makefile` qui y délègue | Makefile seul | `make` absent sous Windows |
 | 26/11/2026 | Images de référence (`docs/design/*.png`) exclues de git | Les versionner | Ce sont des photos sous droits (règle 8) |
 | 26/11/2026 | Site public en Next.js (export statique) dans `web/`, Streamlit gardé comme labo | Streamlit seul | Imposé par la DA du brief |
+| 26/11/2026 | Protocole ML : 2019-20 = rodage ; apprentissage 2020-21 → 2022-23 ; validation 2023-24 ; CV temporelle à 2 plis (valider 2022-23, puis 2023-24) ; test unique 2024-25 → 2026-27 | CV aléatoire ; test sur 2023-24 | Splits temporels uniquement (règle 1), test le plus récent et le plus long possible (711 matchs) |
+| 26/11/2026 | Calibration : aucune / Platt (vector scaling) / isotonique, choisie sur le pli 2022-23 → 2023-24 | Choisir sur le test | Règle 2. Résultat : « aucune » (isotonique sur-apprend avec 306 matchs) |
+| 26/11/2026 | Combinaison = pool log-linéaire (poids ≥ 0) appris sur les prédictions hors-pli de 2023-24 | Moyenne simple ; stacking GBM | Peu de paramètres, interprétable ; les poids montrent directement l'apport de chaque modèle |
+| 26/11/2026 | Information incrémentale : test d'encompassing p ∝ p_marché^a · p_modèle^b, rapport de vraisemblance H0 : b = 0, IC bootstrap | Diebold-Mariano seul | Répond directement à « le modèle apporte-t-il quelque chose au-delà du marché ? » |
+| 26/11/2026 | p-valeurs « meilleur que le marché » par bootstrap unilatéral, corrigées par Holm | Bonferroni ; aucune correction | Contrôle du taux d'erreur familial, moins conservateur que Bonferroni |

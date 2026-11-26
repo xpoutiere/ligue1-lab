@@ -18,10 +18,10 @@ Légende : [x] fait · [ ] à faire. Mis à jour à chaque commit.
 - [x] `build_features(df)` : 130 features, test « modifier le futur ne change pas le passé »
 
 ## D. Modèles ML
-- [ ] Découpage temporel : entraînement ≤ 2022-23, validation 2023-24 (+ CV temporelle par saison), test final unique 2024-25 → aujourd'hui
-- [ ] Logistique multinomiale, LightGBM, calibration (Platt / isotonique) sur jeu séparé
-- [ ] Information incrémentale vs marché (probas marché en feature, régression des log-vraisemblances)
-- [ ] SHAP, tableau comparatif unique avec IC95 bootstrap
+- [x] Découpage temporel : rodage 2019-20, apprentissage 2020-21 → 2022-23, validation 2023-24 (+ CV temporelle par saison), test final unique 2024-25 → aujourd'hui
+- [x] Logistique multinomiale, LightGBM, calibration (Platt / isotonique) choisie sur validation
+- [x] Information incrémentale vs marché (encompassing + LightGBM avec probas marché)
+- [x] SHAP, tableau comparatif unique avec IC95 bootstrap et correction de Holm
 
 ## E. Stratégie et risque
 - [ ] EV, Kelly fractionné, plafonds, seuil choisi sur validation
