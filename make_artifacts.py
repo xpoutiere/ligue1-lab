@@ -184,7 +184,9 @@ def main():
         "b365_margin_pct": float(np.nanmean(margins["B365"])),
         "clv_pct": clvs, "n_bias_tests": len(bi["tests"]),
         "n_bias_significant": sum(t["p_holm"] < 0.05 for t in bi["tests"]),
-        "accuracy_market_pct": mk["accuracy_%"]}, meta)
+        "accuracy_market_pct": mk["accuracy_%"],
+        "outcome_shares": d["FTR"].value_counts(normalize=True).reindex(["H", "D", "A"]).tolist(),
+    }, meta)
     print(f"Artefacts écrits dans {OUT} : " + ", ".join(sorted(p.stem for p in OUT.glob("*.json"))))
 
 

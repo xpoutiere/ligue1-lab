@@ -1,7 +1,7 @@
 {
  "meta": {
-  "generated_at": "2026-11-26T12:17:53Z",
-  "model_version": "0.2.0+5dcb754",
+  "generated_at": "2026-11-26T12:25:33Z",
+  "model_version": "0.2.0+c42d675",
   "data_period": [
    "2019-08-09",
    "2026-11-22"
@@ -40,5 +40,10 @@
  },
  "n_bias_tests": 7,
  "n_bias_significant": 0,
- "accuracy_market_pct": 54.43038
+ "accuracy_market_pct": 54.43038,
+ "outcome_shares": [
+  0.430624,
+  0.246305,
+  0.323071
+ ]
 }
